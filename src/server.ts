@@ -1,4 +1,7 @@
 import { app } from "./app";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
 const port = app.get("port");
 
@@ -27,11 +30,12 @@ function onError(error: NodeJS.ErrnoException) {
     }
 }
 
-function onListening() {
+async function onListening() {
     const addr = server.address();
     const bind =
         typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
     console.log(`Listening on ${bind}`);
+    await mongoose.connect(process.env.db);
 }
 
 export default server;

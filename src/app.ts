@@ -1,11 +1,14 @@
 import express from "express";
 import logger from "morgan";
 import * as path from "path";
+import dotenv from "dotenv";
+dotenv.config();
 
 import { errorHandler, errorNotFoundHandler } from "./middlewares/errorHandler";
 
 // Routes
-import { index } from "./routes/index";
+import { index } from "./routes";
+
 // Create Express server
 export const app = express();
 
